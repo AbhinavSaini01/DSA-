@@ -1,0 +1,77 @@
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+typedef struct lklist
+{
+int info;
+struct lklist *next;
+}node;
+
+void main()
+{
+node*head=NULL,*temp;
+
+void insert_at_begin(node**,int);
+void traverse(node*);
+
+int choice,item;
+while(1)
+{
+clrscr();
+printf("/n 1) Insert at Begin");
+printf("/n 2) Traverse");
+printf("/n 3) exit");
+
+printf("/nEnter Your Choice");
+scanf("%d",&choice);
+
+switch(choice)
+{
+case 1:  printf("/nEnter Item");
+	 scanf("%d",&item);
+	 insert_at_begin(&head,item);
+	 break;
+case 2:  if(head==NULL)
+	 {
+	 printf("List is empty");
+	 }
+	 else
+	 {
+	 traverse(head);
+	 getch();
+	 }
+	 break;
+case 3:  exit(0);
+
+default: printf("wrong choice");
+
+}
+getch();
+}
+}
+
+void insert_at_begin(node **start,int item)
+{
+node*temp;
+temp=(node*)malloc(sizeof(node));
+
+temp->info=item;
+if(*start==NULL)
+{
+temp->next=NULL;
+}
+else
+{
+temp->next= *start;
+}
+*start=temp;
+}
+
+void traverse(node *start)
+{
+while(start!=NULL)
+{
+printf("/n%d", start->info);
+start = start->next;
+}
+}
